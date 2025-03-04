@@ -1,0 +1,20 @@
+// app_server/views/mentalHealth.pug
+
+extends layout.pug
+
+block content
+  .container.mt-5
+    .row.justify-content-center
+      .col-md-10
+        .card.shadow-lg.rounded-lg
+          .card-body.text-center.bg-gradient
+            h1.text-primary Mental Health Check-In
+            form(method="post", action="/mental-health/analyze")
+              .form-group
+                label(for="feelings") How do you feel?
+                textarea.form-control(name="feelings", placeholder="I feel anxious and stressed")
+              button.btn.btn-primary.mt-3(type="submit") Analyze Emotion
+            if sentiment
+              h3 Mental Health Insights:
+              p Sentiment: #{sentiment}
+              p Recommendation: #{recommendation}

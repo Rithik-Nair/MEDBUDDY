@@ -1,0 +1,98 @@
+extends layout.pug
+
+block content
+  .jumbotron.bg-primary.text-white.text-center.p-5
+    h1.display-4.font-weight-bold Welcome to MedBuddy
+    p.lead.font-italic Your AI-Powered Medical & Mental Health Assistant
+    a.btn.btn-light.btn-lg(href="/medbuddy", role="button") Chat with MedBuddy
+    hr
+    p.mb-0.font-weight-light Font your journey to health & wellness starts here!
+
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-info.shadow-sm
+    a.navbar-brand(href="#") MedBuddy
+    button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarNav
+      ul.navbar-nav.ml-auto
+        li.nav-item
+          a.nav-link(href="/medbuddy") Chat with MedBuddy
+        li.nav-item
+          a.nav-link(href="#healthCheck") Quick Health Check
+        li.nav-item
+          a.nav-link(href="#testimonials") Testimonials
+        li.nav-item
+          form.navbar-form(class="form-inline")
+            input.form-control(type="text", placeholder="Search", id="searchBox")
+            button.btn.btn-outline-light(type="submit") Search
+
+  .container.mt-5#healthCheck
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h3.text-center.text-info.font-weight-bold Quick Health Check
+            p.text-muted.font-italic Check your current health status in a few clicks!
+            a.btn.btn-success.btn-lg.d-block.mx-auto.px-5.py-3(href="javascript:void(0);" id="startHealthCheck") Start Health Check
+  #healthCheckResult(style="display:none;")
+
+  .container.mt-5#testimonials
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h3.text-center.text-info.font-weight-bold Client Testimonials
+            p.text-muted Hear from people who trusted MedBuddy!
+            .carousel.slide(id="testimonialCarousel", data-ride="carousel")
+              .carousel-inner
+                .carousel-item.active
+                  p.text-center "MedBuddy helped me monitor my mental health and provided great suggestions!" - Sarah J.
+                .carousel-item
+                  p.text-center "Thanks to MedBuddy, I feel more in control of my health. It’s amazing!" - John D.
+                .carousel-item
+                  p.text-center "MedBuddy has been a true companion for managing my health, love it!" - Alice P.
+              a.carousel-control-prev(href="#testimonialCarousel", role="button", data-slide="prev")
+                span.carousel-control-prev-icon(aria-hidden="true")
+                span.sr-only Previous
+              a.carousel-control-next(href="#testimonialCarousel", role="button", data-slide="next")
+
+  .chatbot-container
+    a.btn.btn-success(id="chatbotButton", href="javascript:void(0);")
+      i.fas.fa-comment-dots
+  #chatbotBox(style="display:none; position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 300px; height: 400px; background-color: white; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); padding: 20px; border-radius: 10px; overflow-y: auto;")
+    h5 Chat with MedBuddy
+    p I'm here to help with your health and wellness journey.
+    textarea.form-control(rows="4", placeholder="Type your message...")
+    button.btn.btn-primary(type="submit") Send
+
+  style.
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+    #chatbotButton {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 10000;
+      border-radius: 50%;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    #chatbotButton:hover {
+      transform: scale(1.1);
+    }
+    .carousel-inner {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    .carousel-item p {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+    }
+    .navbar-dark.bg-info {
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }

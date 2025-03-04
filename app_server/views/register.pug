@@ -1,0 +1,25 @@
+extends layout.pug
+
+block content
+  .form-container
+    .register-box
+      .card
+        .card-header
+          | Register
+        .card-body
+          form(action="/register", method="POST")
+            .form-group
+              label(for="name") Name
+              input.form-control(type="text", id="name", name="name", required=true, placeholder="Enter your name")
+            .form-group
+              label(for="email") Email
+              input.form-control(type="email", id="email", name="email", required=true, placeholder="Enter your email")
+            .form-group
+              label(for="password") Password
+              input.form-control(type="password", id="password", name="password", required=true, placeholder="Create a password")
+            .form-group
+              label(for="confirmPassword") Confirm Password
+              input.form-control(type="password", id="confirmPassword", name="confirmPassword", required=true, placeholder="Confirm your password")
+            button.btn.btn-primary(type="submit") Register
+            .mt-3.text-center
+              a(href="/login") Already have an account? Login here

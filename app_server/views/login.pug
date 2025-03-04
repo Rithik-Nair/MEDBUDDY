@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+  .form-container
+    .login-box
+      .card
+        .card-header
+          | Login
+        .card-body
+          form(action="/login", method="POST")
+            .form-group
+              label(for="username") Username
+              input.form-control(type="username", id="username", name="username", required=true, placeholder="Enter your username")
+            .form-group
+              label(for="password") Password
+              input.form-control(type="password", id="password", name="password", required=true, placeholder="Enter your password")
+            button.btn.btn-primary(type="submit") Login
+            .mt-3.text-center
+              a(href="/register") Don't have an account? Register here

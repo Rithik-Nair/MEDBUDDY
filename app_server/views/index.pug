@@ -1,0 +1,36 @@
+extends layout.pug
+
+block content
+  .container-fluid.bg-gradient.text-white.min-vh-100.d-flex.align-items-center.justify-content-center
+    .row.text-center
+      .col-12
+        h1.display-4.mb-3.text-shadow-lg.font-weight-bold Welcome to MedBuddy
+        p.lead.mb-4.font-italic Your Digital Health Partner for Smart Medicine Management
+        .d-flex.justify-content-center.gap-4.mt-4
+          a.btn.btn-lg.btn-outline-light.shadow-lg.rounded-pill.px-5(href="/login") Login
+          a.btn.btn-lg.btn-primary.shadow-lg.rounded-pill.px-5(href="/register") Register
+      .col-12.mt-5
+        p.small.text-light.text-muted.font-weight-bold &copy; 2025 MedBuddy | Smart Health Assistant
+
+  .container.mt-5
+    .row.text-center
+      .col-md-4
+        h3.mb-3.text-primary Features
+        p We provide a variety of services to manage your health seamlessly. From symptom analysis to mental health support, MedBuddy is your go-to partner in healthcare.
+        ul.list-unstyled
+          li 🩺 Symptom-Based Medicine & Precaution Recommender
+          li 🧠 AI-Powered Mental Health Analysis
+          li 📱 Real-time Health Monitoring & Alerts
+          li 🏥 Wearables Integration for Complete Health Tracking
+
+      .col-md-4
+        h3.mb-3.text-primary Testimonials
+        p "MedBuddy helped me identify my health condition accurately and quickly! It gave me precise medicine recommendations, and the mental health analysis was spot on!" - Sarah L.
+        p "I love the simplicity and accuracy of the platform. The chatbot support made it so easy to get advice when I needed it." - John D.
+        p "This is truly the future of healthcare! Everything I need, all in one place." - Emily G.
+
+  .container-fluid.bg-dark.text-white.py-5
+    .row.text-center
+      .col-12
+        h2.mb-4 Stay Connected
+        p Get the latest updates and news about MedBuddy directly to your inbox.
