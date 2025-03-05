@@ -45,6 +45,21 @@ app.use('/users', usersRouter);
 app.use(chatbotRouter); // Use chatbot routes
 app.use('/api/medbuddy', medbuddyRoutes); // Add medbuddy routes
 
+// Route for handling chatbot messages
+app.post('/api/chatbot', (req, res) => {
+  const userMessage = req.body.message;
+
+  // Here, you can integrate chatbot logic or an API call to process the user's message
+  // For now, let's just echo the user's message with a placeholder reply.
+  console.log("User message:", userMessage);
+
+  // Simple response
+  const botReply = `Bot: I received your message: "${userMessage}"`;
+
+  // Send the response back to the client
+  res.json({ reply: botReply });
+});
+
 // Health check API endpoint
 app.get('/api/healthcheck', (req, res) => {
   res.json({ status: 'healthy' });

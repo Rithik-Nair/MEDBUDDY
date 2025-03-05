@@ -19,6 +19,14 @@ router.get('/', (req, res) => {
   res.render('index');
 });
 
+router.get('/about', (req, res) => {
+  res.render('about');
+})
+
+router.get('/mentalHealth', (req, res) => {
+  res.render('mentalHealth');
+});
+
 // Render home page (only if user is logged in)
 router.get('/home', (req, res) => {
   if (!req.session.user) {

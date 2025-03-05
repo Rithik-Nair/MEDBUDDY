@@ -1,6 +1,11 @@
 const express = require('express');
 const router = express.Router();
-
+// app_server/routes/chatbot.js (Express route)
+router.post('/sendMessage', (req, res) => {
+    // Your logic for handling the message
+    res.json({ message: 'Message received' });
+  });
+  
 // Route to handle chatbot messages (if needed for API)
 router.post('/api/chat', (req, res) => {
     const userMessage = req.body.message;

@@ -1,0 +1,105 @@
+extends layout.pug
+
+block content
+  // About Section Header
+  .navbar.navbar-expand-lg.navbar-light.bg-light
+    .container
+      a.navbar-brand(href="#") MedBuddy
+      button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbarNav
+        ul.navbar-nav.ml-auto
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle(href="#", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Menu
+            .dropdown-menu(aria-labelledby="navbarDropdown")
+              a.dropdown-item(href="/home") Home
+              a.dropdown-item(href="/about") About
+              a.dropdown-item(href="/logout") Logout
+
+  // MedBuddy Introduction
+  .container.mt-5
+    h2.text-center.text-info About MedBuddy
+    p.text-center.font-italic Learn more about how MedBuddy can revolutionize your healthcare experience.
+
+  // MedBuddy Introduction
+  .container.mt-5
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow-lg.rounded-lg
+          .card-body
+            h3.text-center.text-primary.font-weight-bold MedBuddy - Your Personal Health Assistant
+            p.text-muted.font-italic
+              MedBuddy is your AI-powered health companion, designed to provide personalized health support and mental well-being insights. By leveraging cutting-edge AI technologies, MedBuddy offers an intuitive interface that helps you track your health and improve your overall well-being.
+
+  // Key Features of MedBuddy
+  .container.mt-5
+    .row
+      .col-md-6
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h4.text-center.text-success.font-weight-bold AI-powered Health Monitoring
+            p.text-muted
+              MedBuddy uses advanced machine learning models to analyze your health data and provide real-time feedback on your physical and mental health status. Whether it’s tracking your heart rate, stress levels, or emotional well-being, MedBuddy has you covered.
+
+      .col-md-6
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h4.text-center.text-success.font-weight-bold Mental Health Support
+            p.text-muted
+              MedBuddy doesn’t just focus on physical health; it offers personalized recommendations for mental wellness. Through mood tracking, stress management tips, and mental clarity exercises, MedBuddy ensures that you stay mentally fit along with your physical health.
+
+  // How It Works Section
+  .container.mt-5
+    .row
+      .col-md-12
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h4.text-center.text-warning.font-weight-bold How MedBuddy Works
+            p.text-muted
+              MedBuddy seamlessly integrates with your daily routine. All you need to do is provide basic health information, and our AI assistant starts processing it to offer suggestions that improve your lifestyle. From healthy habits to mental well-being, MedBuddy provides timely alerts and suggestions to help you stay on track.
+
+  // Testimonials Section
+  .container.mt-5
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h3.text-center.text-info.font-weight-bold Client Testimonials
+            p.text-muted Hear from people who trusted MedBuddy!
+            .carousel.slide(id="testimonialCarousel", data-ride="carousel")
+              .carousel-inner
+                .carousel-item.active
+                  p.text-center "MedBuddy helped me monitor my mental health and provided great suggestions!" - Sarah J.
+                .carousel-item
+                  p.text-center "Thanks to MedBuddy, I feel more in control of my health. It’s amazing!" - John D.
+                .carousel-item
+                  p.text-center "MedBuddy has been a true companion for managing my health, love it!" - Alice P.
+              a.carousel-control-prev(href="#testimonialCarousel", role="button", data-slide="prev")
+                span.carousel-control-prev-icon(aria-hidden="true")
+                span.sr-only Previous
+              a.carousel-control-next(href="#testimonialCarousel", role="button", data-slide="next")
+
+  // Benefits Section
+  .container.mt-5
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h4.text-center.text-info.font-weight-bold Why Choose MedBuddy?
+            p.text-muted
+              MedBuddy isn’t just an AI assistant; it’s a full-fledged health companion that helps you maintain a balanced lifestyle. With its easy-to-use interface, personalized insights, and continuous monitoring, MedBuddy empowers you to make informed decisions about your health, track your progress, and stay motivated.
+            ul.text-muted
+              li Ensures personalized healthcare recommendations tailored to your needs.
+              li Provides real-time analysis of both physical and mental health.
+              li Offers suggestions for healthier lifestyle choices based on data-driven insights.
+              li Tracks emotional and psychological well-being alongside physical health.
+
+  // Call to Action Section
+  .container.mt-5
+    .row.justify-content-center
+      .col-md-6
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-primary.text-white
+            h4.text-center.font-weight-bold Ready to Take Control of Your Health?
+            p.text-center.font-italic MedBuddy is here to guide you toward a healthier, happier life. Get started today!
+            a.btn.btn-light.btn-lg.d-block.mx-auto.px-5.py-3(href="/medbuddy") Start Your Journey with MedBuddy
