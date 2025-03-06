@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const User = require('../model/user');
+const Sentiment = require("sentiment");
+const sentiment = new Sentiment();
+const { searchDisease } = require('../model/searchModel');
 
 // MongoDB connection with error handling
 mongoose.connect('mongodb+srv://Rithik:RTKA53@myatlasclusteredu.7ci8cvq.mongodb.net/MedBuddy?retryWrites=true&w=majority&appName=myAtlasClusterEDU')
@@ -23,8 +26,38 @@ router.get('/about', (req, res) => {
   res.render('about');
 })
 
-router.get('/mentalHealth', (req, res) => {
-  res.render('mentalHealth');
+router.get('/searchResults', (req, res) => {
+  const query = req.query.query; // Get search input
+  if (query) {
+    res.render('searchResults', { query });
+  } else {
+    res.render('searchResults', { query: 'No search term provided' });
+  }
+});
+
+router.post("/mental-health/analyze", (req, res) => {
+  const { feelings } = req.body;
+
+  if (!feelings) {
+    return res.render("mentalHealth", {
+      sentiment: "No Input",
+      recommendation: "Please enter how you're feeling!",
+    });
+  }
+
+  const result = sentiment.analyze(feelings);
+  const score = result.score;
+  let recommendation = "";
+
+  if (score > 0) {
+    recommendation = "You're feeling Positive 😊! Keep shining ✨";
+  } else if (score < 0) {
+    recommendation = "You're feeling Negative 😞. Talk to someone or practice deep breathing.";
+  } else {
+    recommendation = "You're feeling Neutral 😐. Try some relaxation techniques!";
+  }
+
+  res.render("mentalHealth", { sentiment: score, recommendation });
 });
 
 // Render home page (only if user is logged in)

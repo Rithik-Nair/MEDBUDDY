@@ -6,13 +6,23 @@ block content
       .col-md-10
         .card.shadow-lg.rounded-lg
           .card-body.text-center.bg-gradient
-            h1.text-primary Mental Health Check-In
-            form(method="post", action="/mental-health/analyze")
+            h1.text-primary Mental Health Check-In 😊
+            p.text-muted Share your feelings and get personalized insights
+
+            form(method="post", action="/mentalHealth")
               .form-group
-                label(for="feelings") How do you feel?
-                textarea.form-control(name="feelings", placeholder="I feel anxious and stressed")
+                label(for="feelings") How do you feel today?
+                textarea.form-control(name="feelings", placeholder="I feel happy and excited...")
               button.btn.btn-primary.mt-3(type="submit") Analyze Emotion
+
             if sentiment
-              h3 Mental Health Insights:
-              p Sentiment: #{sentiment}
-              p Recommendation: #{recommendation}
+              .alert.alert-info.mt-3 Your Sentiment Score is: #{sentiment}
+              h3 Mental Health Insights 🧠
+              p.text-success Recommendation: #{recommendation}
+
+              if sentiment > 0
+                i.text-success.fas.fa-smile-beam(style="font-size: 50px;")
+              else if sentiment < 0
+                i.text-danger.fas.fa-frown(style="font-size: 50px;")
+              else
+                i.text-warning.fas.fa-meh(style="font-size: 50px;")

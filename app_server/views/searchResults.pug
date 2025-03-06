@@ -1,0 +1,15 @@
+extends layout.pug
+
+block content
+  .container.mt-5
+    h2.text-center.text-primary Search Results for "#{query}"
+
+    if results.length
+      each result in results
+        .card.shadow.mb-3
+          .card-body
+            h5 #{result.Disease}
+            p Symptoms: #{result.Symptoms}
+            p Treatment: #{result.Treatment}
+    else
+      p.text-center.text-danger No results found for "#{query}"

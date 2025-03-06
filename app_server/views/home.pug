@@ -30,7 +30,7 @@ block content
         .input-group-append
           button.btn.btn-light(type="submit") Search
     hr
-    p.mb-0.font-weight-light Font your journey to health & wellness starts here!
+    p.mb-0.font-weight-light Find health tips, articles, and assistance in a click!
 
   // Quick Health Check Section
   .container.mt-5#healthCheck
@@ -88,3 +88,105 @@ block content
         isVoice: undefined
       });
     });
+
+block content
+  // Header Section with Logo and Navigation
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.shadow-sm
+    //- Logo and Hamburger Menu
+    button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+      span.navbar-toggler-icon
+    
+    a.navbar-brand(href="#") MedBuddy - Your health, Our priority
+
+    .collapse.navbar-collapse#navbarNav
+      ul.navbar-nav.ml-auto
+        li.nav-item.dropdown
+          a.nav-link.dropdown-toggle(href="#", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Menu
+          .dropdown-menu(aria-labelledby="navbarDropdown")
+            a.dropdown-item(href="/home") Home
+            a.dropdown-item(href="/about") About
+            a.dropdown-item(href="/logout") Logout
+
+  // Main Jumbotron Section
+  .jumbotron.bg-primary.text-white.text-center.p-5
+    h1.display-4.font-weight-bold Welcome to MedBuddy
+    p.lead.font-italic Your AI-Powered Medical & Mental Health Assistant
+    
+    // Search Bar Section
+    form(action="/search", method="get")
+      .input-group.mb-3.d-flex.justify-content-center
+        input.form-control(type="text", placeholder="Search for your health medications,symptoms and assistance for your disease", name="/searchResults")
+        .input-group-append
+          button.btn.btn-light(type="submit") Search
+        .input-group-append
+          button.btn.btn-info(type="button", onclick="startVoiceRecognition()") 🎙️ Voice
+    hr
+    p.mb-0.font-weight-light Disclaimer:If your condition worsens over time please consult a doctor.
+
+  // Quick Health Check Section
+  .container.mt-5#healthCheck
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h3.text-center.text-info.font-weight-bold Quick Health Check
+            p.text-muted.font-italic Check your current health status in a few clicks!
+            a.btn.btn-success.btn-lg.d-block.mx-auto.px-5.py-3(href="/mentalHealth") Start Health Check
+  #healthCheckResult(style="display:none;")
+
+  // Testimonials Section with Carousel
+  .container.mt-5#testimonials
+    .row.justify-content-center
+      .col-md-8
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h3.text-center.text-info.font-weight-bold Client Testimonials
+            p.text-muted Hear from people who trusted MedBuddy!
+            .carousel.slide(id="testimonialCarousel", data-ride="carousel")
+              .carousel-inner
+                .carousel-item.active
+                  p.text-center "MedBuddy helped me monitor my mental health and provided great suggestions!" - Sarah J.
+                .carousel-item
+                  p.text-center "Thanks to MedBuddy, I feel more in control of my health. It’s amazing!" - John D.
+                .carousel-item
+                  p.text-center "MedBuddy has been a true companion for managing my health, love it!" - Alice P.
+              a.carousel-control-prev(href="#testimonialCarousel", role="button", data-slide="prev")
+                span.carousel-control-prev-icon(aria-hidden="true")
+                span.sr-only Previous
+              a.carousel-control-next(href="#testimonialCarousel", role="button", data-slide="next")
+
+  // Include the Jotform chatbot script here
+  script(src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js')
+  script.
+    window.addEventListener("DOMContentLoaded", function() {
+      window.AgentInitializer.init({
+        agentRenderURL: "https://agent.jotform.com/019561899be1770a844a7c5cbcf16047ed18",
+        rootId: "JotformAgent-019561899be1770a844a7c5cbcf16047ed18",
+        formID: "019561899be1770a844a7c5cbcf16047ed18",
+        queryParams: ["skipWelcome=1", "maximizable=1"],
+        domain: "https://www.jotform.com",
+        isDraggable: false,
+        background: "linear-gradient(180deg, #035C5F 0%, #035C5F 100%)",
+        buttonBackgroundColor: "#8E1CA8",
+        buttonIconColor: "#FFFFFF",
+        variant: false,
+        customizations: {
+          "greeting": "Yes",
+          "greetingMessage": "Hi! How can I assist you?",
+          "pulse": "Yes",
+          "position": "right"
+        },
+        isVoice: undefined
+      });
+    });
+
+  script.
+    function startVoiceRecognition() {
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'en-US';
+      recognition.start();
+      recognition.onresult = function(event) {
+        const result = event.results[0][0].transcript;
+        document.querySelector('input[name="query"]').value = result;
+      };
+    }
