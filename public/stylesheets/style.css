@@ -427,3 +427,128 @@ html {
     }
   }
   
+  /* public/stylesheets/ai-agent.css */
+
+/* Centering the AI Agent section in the middle of the page */
+.ai-agent-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Make sure it takes up most of the screen */
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    animation: fadeIn 2s ease-out;
+  }
+  
+  .ai-agent-container:hover {
+    transform: scale(1.05); /* Hover effect to enlarge the AI agent */
+  }
+  
+  .ai-agent-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .ai-agent-header h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  
+  .ai-agent-header p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+  }
+  
+  .ai-agent-content {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .ai-agent-content p {
+    font-size: 1.1em;
+    color: #34495e;
+  }
+  
+  .ai-agent-chat {
+    width: 80%;
+    max-width: 600px;
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Animation to fade in the container */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Style for the buttons */
+  .btn-primary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9;
+  }
+
+  .container {
+    margin-top: 50px;
+  }
+  
+  .chat-box {
+    border: 2px solid #007bff;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+    background-color: #f1f1f1;
+  }
+  
+  .system-message {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+  }
+  
+  .user-message {
+    background: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+    text-align: right;
+  }
+  
+  #cornerImage {
+    position: fixed;
+    bottom: 20px;   /* Distance from the bottom */
+    left: 20px;     /* Distance from the left */
+    width: 100px;   /* Adjust the size of the image */
+    height: auto;   /* Maintain the aspect ratio */
+    z-index: 999;   /* Ensure it appears on top of other elements */
+    border-radius: 10px; /* Optional: for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow */
+  }
+  

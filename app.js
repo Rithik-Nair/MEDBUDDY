@@ -26,6 +26,7 @@ app.use(cookieParser());
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 // Set up session middleware
 app.use(session({

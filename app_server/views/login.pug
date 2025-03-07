@@ -17,3 +17,133 @@ block content
             button.btn.btn-primary(type="submit") Login
             .mt-3.text-center
               a(href="/register") Don't have an account? Register here
+
+  // Custom Styling with Animations
+  style.
+    body {
+      background-color: #f4f7fc;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 400px;
+      margin-top: 50px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      animation: slideIn 1s ease-in-out;
+    }
+
+    .card-header {
+      background-color: #6200ea;
+      color: white;
+      border-radius: 8px 8px 0 0;
+      padding: 15px;
+      font-size: 1.5rem;
+      animation: fadeInHeader 1s ease-in-out;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    .form-group label {
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .form-control {
+      font-size: 1rem;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      animation: fadeInFields 1s ease-in-out forwards;
+    }
+
+    .form-control:focus {
+      border-color: #6200ea;
+      box-shadow: 0 0 8px rgba(98, 0, 234, 0.5);
+    }
+
+    button.btn.btn-primary {
+      background-color: #6200ea;
+      border-color: #6200ea;
+      font-size: 1.1rem;
+      padding: 12px 0;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      animation: fadeInButton 1.5s ease-in-out;
+    }
+
+    button.btn.btn-primary:hover {
+      background-color: #3700b3;
+      transform: scale(1.05);
+    }
+
+    .text-center a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      color: #6200ea;
+      transition: color 0.3s ease;
+    }
+
+    .text-center a:hover {
+      color: #3700b3;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInHeader {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      0% {
+        transform: translateY(-30px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInFields {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInButton {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }

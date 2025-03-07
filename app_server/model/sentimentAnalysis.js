@@ -1,7 +1,12 @@
-exports.analyze = (inputText) => {
-    // Simple mock logic for sentiment analysis
-    if (inputText.includes('stress') || inputText.includes('anxious')) {
-        return 'negative'; // Negative sentiment
-    }
-    return 'positive'; // Positive sentiment
-};
+const axios = require('axios');
+
+async function analyzeEmotion(text) {
+  try {
+    const res = await axios.post('http://localhost:5000/predict', { text });
+    return res.data.emotion;
+  } catch (err) {
+    return "Error";
+  }
+}
+
+module.exports = analyzeEmotion;

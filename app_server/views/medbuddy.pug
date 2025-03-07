@@ -1,89 +1,15 @@
-extends layout.pug
+extends layout
 
 block content
-  .chat-container
-    h1 MedBuddy Chatbot
-    p Welcome to the MedBuddy Chat Service. Start by chatting with the bot below.
+  div.container
+    h1.text-center MedBuddy - Your Virtual Health Assistant 🤖
+    p.text-center Welcome to MedBuddy! How can I assist you today?
 
-    .chat-box
-      .messages
-        //- This is where the messages will appear dynamically
-      .input-area
-        input#userMessage(type="text" placeholder="Type your message here...")
-        button#sendMessage Send
+    div.chat-box
+      div#chat-display
+        p.system-message Hello! I am MedBuddy. Ask me anything about medicines, health tips, or symptoms.
 
-  style.
-    .chat-container {
-      background-color: #f0f8ff;
-      border-radius: 10px;
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
+      input#user-input.form-control(type="text" placeholder="Type your question here...")
+      button#send-btn.btn.btn-primary Send
 
-    h1 {
-      font-size: 2rem;
-      color: #4a90e2;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #777;
-    }
-
-    .chat-box {
-      background-color: white;
-      border-radius: 10px;
-      padding: 20px;
-      max-height: 400px;
-      overflow-y: auto;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      margin-top: 20px;
-    }
-
-    .messages {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .messages p {
-      background-color: #e1f5fe;
-      border-radius: 5px;
-      padding: 10px;
-      margin: 5px 0;
-      max-width: 80%;
-      word-wrap: break-word;
-      font-size: 1rem;
-    }
-
-    .input-area {
-      margin-top: 20px;
-    }
-
-    input[type="text"] {
-      width: 80%;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-    }
-
-    button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      background-color: #4a90e2;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      margin-left: 10px;
-    }
-
-    button:hover {
-      background-color: #357abd;
-    }
-
-  script(src='/js/medbuddy.js')
+  script(src="/js/medbuddy.js")

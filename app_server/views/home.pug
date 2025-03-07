@@ -2,8 +2,8 @@ extends layout.pug
 
 block content
   // Header Section with Logo and Navigation
+  
   nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.shadow-sm
-    //- Logo and Hamburger Menu
     button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
       span.navbar-toggler-icon
     
@@ -18,175 +18,320 @@ block content
             a.dropdown-item(href="/about") About
             a.dropdown-item(href="/logout") Logout
 
-  // Main Jumbotron Section
-  .jumbotron.bg-primary.text-white.text-center.p-5
-    h1.display-4.font-weight-bold Welcome to MedBuddy
-    p.lead.font-italic Your AI-Powered Medical & Mental Health Assistant
+  // Main Section - AI Chatbot (Center of the page)
+  .container.mt-5
+    .row.justify-content-center
+      .col-md-6
+        .card.shadow-lg.rounded-lg
+          .card-body.bg-light
+            h3.text-center.text-info.font-weight-bold AI Chatbot - Your Virtual Health Assistant
+            p.text-center.text-muted Use our AI chatbot for medical and mental health assistance
+          .text-center.mt-4
+            p.text-muted Interact with the chatbot for health advice, symptom checking, and more!
+            button#startChatBtn.btn.btn-primary BOT
+
+  // Chatbot Container (Hidden by default)
+  #chatbotContainer(style="display:none;") 
+    .chatbot-frame
+      // Here is where the chatbot will load
+      #JotformAgent-019561899be1770a844a7c5cbcf16047ed18
+
     
-    // Search Bar Section
-    form(action="/search", method="get")
-      .input-group.mb-3.d-flex.justify-content-center
-        input.form-control(type="text", placeholder="Search for health tips, articles, or assistance...", name="query")
-        .input-group-append
-          button.btn.btn-light(type="submit") Search
-    hr
-    p.mb-0.font-weight-light Find health tips, articles, and assistance in a click!
-
-  // Quick Health Check Section
-  .container.mt-5#healthCheck
-    .row.justify-content-center
-      .col-md-8
-        .card.shadow-lg.rounded-lg
-          .card-body.bg-light
-            h3.text-center.text-info.font-weight-bold Quick Health Check
-            p.text-muted.font-italic Check your current health status in a few clicks!
-            a.btn.btn-success.btn-lg.d-block.mx-auto.px-5.py-3(href="/mentalHealth") Start Health Check
-  #healthCheckResult(style="display:none;")
-
-  // Testimonials Section with Carousel
-  .container.mt-5#testimonials
-    .row.justify-content-center
-      .col-md-8
-        .card.shadow-lg.rounded-lg
-          .card-body.bg-light
-            h3.text-center.text-info.font-weight-bold Client Testimonials
-            p.text-muted Hear from people who trusted MedBuddy!
-            .carousel.slide(id="testimonialCarousel", data-ride="carousel")
-              .carousel-inner
-                .carousel-item.active
-                  p.text-center "MedBuddy helped me monitor my mental health and provided great suggestions!" - Sarah J.
-                .carousel-item
-                  p.text-center "Thanks to MedBuddy, I feel more in control of my health. It’s amazing!" - John D.
-                .carousel-item
-                  p.text-center "MedBuddy has been a true companion for managing my health, love it!" - Alice P.
-              a.carousel-control-prev(href="#testimonialCarousel", role="button", data-slide="prev")
-                span.carousel-control-prev-icon(aria-hidden="true")
-                span.sr-only Previous
-              a.carousel-control-next(href="#testimonialCarousel", role="button", data-slide="next")
 
   // Include the Jotform chatbot script here
   script(src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js')
   script.
     window.addEventListener("DOMContentLoaded", function() {
-      window.AgentInitializer.init({
-        agentRenderURL: "https://agent.jotform.com/019561899be1770a844a7c5cbcf16047ed18",
-        rootId: "JotformAgent-019561899be1770a844a7c5cbcf16047ed18",
-        formID: "019561899be1770a844a7c5cbcf16047ed18",
-        queryParams: ["skipWelcome=1", "maximizable=1"],
-        domain: "https://www.jotform.com",
-        isDraggable: false,
-        background: "linear-gradient(180deg, #035C5F 0%, #035C5F 100%)",
-        buttonBackgroundColor: "#8E1CA8",
-        buttonIconColor: "#FFFFFF",
-        variant: false,
-        customizations: {
-          "greeting": "Yes",
-          "greetingMessage": "Hi! How can I assist you?",
-          "pulse": "Yes",
-          "position": "right"
-        },
-        isVoice: undefined
-      });
+      // Initialize the chatbot agent after page load
+      setTimeout(function() {
+        window.AgentInitializer.init({
+          agentRenderURL: "https://agent.jotform.com/019561899be1770a844a7c5cbcf16047ed18",
+          rootId: "JotformAgent-019561899be1770a844a7c5cbcf16047ed18",
+          formID: "019561899be1770a844a7c5cbcf16047ed18",
+          queryParams: ["skipWelcome=1", "maximizable=1"],
+          domain: "https://www.jotform.com",
+          isDraggable: false,
+          background: "linear-gradient(180deg, #035C5F 0%, #035C5F 100%)",
+          buttonBackgroundColor: "#8E1CA8",
+          buttonIconColor: "#FFFFFF",
+          variant: false,
+          customizations: {
+            "greeting": "Yes",
+            "greetingMessage": "Hi! How can I assist you?",
+            "pulse": "Yes",
+            "position": "right",
+            "hidePoweredBy": true
+          },
+          isVoice: undefined
+        });
+      }, 1000); // Wait for 1 second before initializing the chatbot (ensure it doesn't conflict with other page load events)
+
+      // Add a click event listener to the 'Start Chat' button
+      const startChatBtn = document.getElementById('startChatBtn');
+      const chatbotContainer = document.getElementById('chatbotContainer');
+      if (startChatBtn) {
+        startChatBtn.addEventListener('click', function() {
+          // Show the chatbot interface when 'Start Chat' button is clicked
+          chatbotContainer.style.display = 'block';
+          chatbotContainer.classList.add('slideIn');
+        });
+      }
     });
 
-block content
-  // Header Section with Logo and Navigation
-  nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.shadow-sm
-    //- Logo and Hamburger Menu
-    button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
-      span.navbar-toggler-icon
-    
-    a.navbar-brand(href="#") MedBuddy - Your health, Our priority
+    // Function to handle image upload
+    function handleImageUpload(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      const imageError = document.getElementById('imageError');
+      const uploadedImage = document.getElementById('uploadedImage');
 
-    .collapse.navbar-collapse#navbarNav
-      ul.navbar-nav.ml-auto
-        li.nav-item.dropdown
-          a.nav-link.dropdown-toggle(href="#", id="navbarDropdown", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false") Menu
-          .dropdown-menu(aria-labelledby="navbarDropdown")
-            a.dropdown-item(href="/home") Home
-            a.dropdown-item(href="/about") About
-            a.dropdown-item(href="/logout") Logout
+      // Clear previous error message
+      imageError.style.display = 'none';
 
-  // Main Jumbotron Section
-  .jumbotron.bg-primary.text-white.text-center.p-5
-    h1.display-4.font-weight-bold Welcome to MedBuddy
-    p.lead.font-italic Your AI-Powered Medical & Mental Health Assistant
-    
-    // Search Bar Section
-    form(action="/search", method="get")
-      .input-group.mb-3.d-flex.justify-content-center
-        input.form-control(type="text", placeholder="Search for your health medications,symptoms and assistance for your disease", name="/searchResults")
-        .input-group-append
-          button.btn.btn-light(type="submit") Search
-        .input-group-append
-          button.btn.btn-info(type="button", onclick="startVoiceRecognition()") 🎙️ Voice
-    hr
-    p.mb-0.font-weight-light Disclaimer:If your condition worsens over time please consult a doctor.
+      if (file && file.type.startsWith('image/')) {
+        reader.onload = function(e) {
+          uploadedImage.src = e.target.result;
+          uploadedImage.style.display = 'block';  // Show the uploaded image
+        };
+        reader.readAsDataURL(file);
+      } else {
+        imageError.style.display = 'block'; // Show error message if file is not an image
+        uploadedImage.style.display = 'none'; // Hide the image preview
+      }
+    }
 
-  // Quick Health Check Section
-  .container.mt-5#healthCheck
-    .row.justify-content-center
-      .col-md-8
-        .card.shadow-lg.rounded-lg
-          .card-body.bg-light
-            h3.text-center.text-info.font-weight-bold Quick Health Check
-            p.text-muted.font-italic Check your current health status in a few clicks!
-            a.btn.btn-success.btn-lg.d-block.mx-auto.px-5.py-3(href="/mentalHealth") Start Health Check
-  #healthCheckResult(style="display:none;")
+  // Custom Styling and Animations
+  style.
+    body {
+      background-color: #f7f7f7;
+      font-family: 'Arial', sans-serif;
+      animation: fadeIn 1s ease-out;
+    }
 
-  // Testimonials Section with Carousel
-  .container.mt-5#testimonials
-    .row.justify-content-center
-      .col-md-8
-        .card.shadow-lg.rounded-lg
-          .card-body.bg-light
-            h3.text-center.text-info.font-weight-bold Client Testimonials
-            p.text-muted Hear from people who trusted MedBuddy!
-            .carousel.slide(id="testimonialCarousel", data-ride="carousel")
-              .carousel-inner
-                .carousel-item.active
-                  p.text-center "MedBuddy helped me monitor my mental health and provided great suggestions!" - Sarah J.
-                .carousel-item
-                  p.text-center "Thanks to MedBuddy, I feel more in control of my health. It’s amazing!" - John D.
-                .carousel-item
-                  p.text-center "MedBuddy has been a true companion for managing my health, love it!" - Alice P.
-              a.carousel-control-prev(href="#testimonialCarousel", role="button", data-slide="prev")
-                span.carousel-control-prev-icon(aria-hidden="true")
-                span.sr-only Previous
-              a.carousel-control-next(href="#testimonialCarousel", role="button", data-slide="next")
+    nav.navbar {
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      animation: slideInFromLeft 1s ease-out;
+    }
 
-  // Include the Jotform chatbot script here
-  script(src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js')
-  script.
-    window.addEventListener("DOMContentLoaded", function() {
-      window.AgentInitializer.init({
-        agentRenderURL: "https://agent.jotform.com/019561899be1770a844a7c5cbcf16047ed18",
-        rootId: "JotformAgent-019561899be1770a844a7c5cbcf16047ed18",
-        formID: "019561899be1770a844a7c5cbcf16047ed18",
-        queryParams: ["skipWelcome=1", "maximizable=1"],
-        domain: "https://www.jotform.com",
-        isDraggable: false,
-        background: "linear-gradient(180deg, #035C5F 0%, #035C5F 100%)",
-        buttonBackgroundColor: "#8E1CA8",
-        buttonIconColor: "#FFFFFF",
-        variant: false,
-        customizations: {
-          "greeting": "Yes",
-          "greetingMessage": "Hi! How can I assist you?",
-          "pulse": "Yes",
-          "position": "right"
-        },
-        isVoice: undefined
-      });
-    });
+    nav.navbar:hover {
+      background-color: #003B3D;
+      transform: translateY(-5px);
+    }
 
-  script.
-    function startVoiceRecognition() {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'en-US';
-      recognition.start();
-      recognition.onresult = function(event) {
-        const result = event.results[0][0].transcript;
-        document.querySelector('input[name="query"]').value = result;
-      };
+    .jumbotron {
+      background-color: #035C5F;
+      color: white;
+      text-align: center;
+      padding: 50px 0;
+      margin-bottom: 30px;
+      animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .card {
+      border-radius: 15px;
+      opacity: 0;
+      animation: fadeInCard 1s forwards;
+    }
+
+    .card-body.bg-light {
+      padding: 30px;
+    }
+
+    h3.text-info {
+      font-size: 1.8rem;
+      font-weight: 600;
+      animation: fadeInText 1s ease-in-out;
+    }
+
+    .d-flex.justify-content-center {
+      margin-bottom: 20px;
+    }
+
+    p.text-muted {
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .text-center.mt-4 p {
+      font-size: 1.2rem;
+    }
+
+    .container.mt-5 {
+      padding: 30px 0;
+    }
+
+    #chatbotContainer {
+      margin-top: 30px;
+      width: 100%;
+      height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      display: none;
+      transform: translateY(100%);
+      transition: transform 0.5s ease, opacity 1s ease;
+    }
+
+    #chatbotContainer.slideIn {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .chatbot-frame {
+      height: 100%;
+      width: 100%;
+    }
+
+    .image-upload-section {
+      text-align: center;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .uploaded-image-container {
+      margin-top: 20px;
+    }
+
+    .upload-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s ease;
+      animation: bounceIn 1s ease-out;
+    }
+
+    .upload-btn:hover {
+      background-color: #218838;
+      transform: translateY(-3px);
+    }
+
+    #uploadedImage {
+      transition: transform 0.3s ease;
+      animation: fadeInImage 1s ease-out;
+    }
+
+    #uploadedImage:hover {
+      transform: scale(1.05);
+    }
+
+    .navbar-nav .nav-item:hover {
+      background-color: #035C5F;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: url('your-background-image.jpg') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      animation: parallax 10s linear infinite;
+    }
+
+    @keyframes parallax {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: 100% 100%;
+      }
+    }
+
+    #startChatBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      background-color: #0056b3;
+      color: white;
+      font-size: 20px;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+
+    #startChatBtn:hover {
+      background-color: #003f7d;
+    }
+
+    @keyframes fadeInCard {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInImage {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInFromLeft {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      60% {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
     }

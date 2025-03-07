@@ -4,33 +4,139 @@ block content
   .container-fluid.bg-gradient.text-white.min-vh-100.d-flex.align-items-center.justify-content-center
     .row.text-center
       .col-12
-        h1.display-4.mb-3.text-shadow-lg.font-weight-bold Welcome to MedBuddy
-        p.lead.mb-4.font-italic Your Digital Health Partner for Smart Medicine Management
+        h1.display-4.mb-3.text-shadow-lg.font-weight-bold.animate__animated.animate__fadeInUp.animate__delay-1s Welcome to MedBuddy
+        p.lead.mb-4.font-italic.animate__animated.animate__fadeInUp.animate__delay-1.5s Your Digital Health Partner for Smart Medicine Management
         .d-flex.justify-content-center.gap-4.mt-4
-          a.btn.btn-lg.btn-outline-light.shadow-lg.rounded-pill.px-5(href="/login") Login
-          a.btn.btn-lg.btn-primary.shadow-lg.rounded-pill.px-5(href="/register") Register
+          a.btn.btn-lg.btn-outline-light.shadow-lg.rounded-pill.px-5.btn-hover-zoom.animate__animated.animate__fadeInUp.animate__delay-2s(href="/login") Login
+          a.btn.btn-lg.btn-primary.shadow-lg.rounded-pill.px-5.btn-hover-zoom.animate__animated.animate__fadeInUp.animate__delay-2.5s(href="/register") Register
       .col-12.mt-5
         p.small.text-light.text-muted.font-weight-bold &copy; Tech Brainer's | 2025 MedBuddy | Smart Health Assistant
 
-  .container.mt-5
-    .row.text-center
-      .col-md-4
-        h3.mb-3.text-primary Features
-        p We provide a variety of services to manage your health seamlessly. From symptom analysis to mental health support, MedBuddy is your go-to partner in healthcare.
-        ul.list-unstyled
-          li 🩺 Symptom-Based Medicine & Precaution Recommender
-          li 🧠 AI-Powered Mental Health Analysis
-          li 📱 Real-time Health Monitoring & Alerts
-          li 🏥 Wearables Integration for Complete Health Tracking
+  // Custom Styling and Animations
+  style.
+    body {
+      background: linear-gradient(45deg, #00bcd4, #8e24aa);
+      font-family: 'Poppins', sans-serif;
+      animation: fadeInBackground 1.5s ease-out;
+    }
 
-      .col-md-4
-        h3.mb-3.text-primary Testimonials
-        p "MedBuddy helped me identify my health condition accurately and quickly! It gave me precise medicine recommendations, and the mental health analysis was spot on!" - Sarah L.
-        p "I love the simplicity and accuracy of the platform. The chatbot support made it so easy to get advice when I needed it." - John D.
-        p "This is truly the future of healthcare! Everything I need, all in one place." - Emily G.
+    .container-fluid.bg-gradient {
+      background: linear-gradient(45deg, #00bcd4, #8e24aa);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+      box-shadow: inset 0 0 300px rgba(0, 0, 0, 0.2);
+    }
 
-  .container-fluid.bg-dark.text-white.py-5
-    .row.text-center
-      .col-12
-        h2.mb-4 Stay Connected
-        p Get the latest updates and news about MedBuddy directly to your inbox.
+    h1.display-4.text-shadow-lg {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+      animation: slideInFromTop 1s ease-out;
+    }
+
+    p.lead.font-italic {
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      font-style: italic;
+      opacity: 0.8;
+      animation: fadeInText 2s ease-in-out;
+    }
+
+    .btn {
+      padding: 15px 35px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-light {
+      border: 2px solid #ffffff;
+      background-color: transparent;
+      color: #ffffff;
+    }
+
+    .btn-primary {
+      background-color: #6200ea;
+      border-color: #6200ea;
+    }
+
+    .btn-outline-light:hover, .btn-primary:hover {
+      background-color: #ffffff;
+      color: #6200ea;
+      transform: scale(1.1);
+    }
+
+    .btn-hover-zoom {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-hover-zoom:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-muted {
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.7);
+      animation: fadeInText 2.5s ease-in-out;
+    }
+
+    .text-muted a {
+      color: #ffffff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .text-muted a:hover {
+      color: #6200ea;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInBackground {
+      0% {
+        background: linear-gradient(45deg, #00bcd4, #8e24aa);
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInFromTop {
+      0% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInText {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }

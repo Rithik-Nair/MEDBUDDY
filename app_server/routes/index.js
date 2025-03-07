@@ -26,6 +26,10 @@ router.get('/about', (req, res) => {
   res.render('about');
 })
 
+router.get('/mentalHealth', (req, res) => {
+  res.render('mentalHealth');
+})
+
 router.get('/searchResults', (req, res) => {
   const query = req.query.query; // Get search input
   if (query) {
